@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="ClinicDB" Class="DBDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=(localdb)\ProjectsV13;Initial Catalog=ClinicDB;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="ClinicDBConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Patients" Member="Patients">
+    <Type Name="Patient">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="PatientName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="PatientCode" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="Patient_Visit" Member="Visits" ThisKey="ID" OtherKey="PatientID" Type="Visit" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Visits" Member="Visits">
+    <Type Name="Visit">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="VisitNumber" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="VisitDate" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="PatientID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Patient_Visit" Member="Patient" ThisKey="PatientID" OtherKey="ID" Type="Patient" IsForeignKey="true" DeleteRule="CASCADE" />
+    </Type>
+  </Table>
+</Database>
